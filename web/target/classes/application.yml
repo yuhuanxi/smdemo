@@ -1,0 +1,72 @@
+server:
+    port: 8088
+
+spring:
+    # 数据源配置
+    datasource:
+        # 开发环境
+        dev:
+          druid:
+            name: dev
+            url: jdbc:mysql://127.0.0.1:3306/dev?useSSL=false&characterEncoding=UTF8&useUnicode=true
+            username: root
+            password: root
+            # 使用druid数据源
+            driverClassName: com.mysql.jdbc.Driver
+            type: com.alibaba.druid.pool.DruidDataSource
+            filters: stat
+            maxActive: 20
+            initialSize: 1
+            maxWait: 60000
+            minIdle: 1
+            timeBetweenEvictionRunsMillis: 60000
+            minEvictableIdleTimeMillis: 300000
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            poolPreparedStatements: true
+            maxOpenPreparedStatements: 20
+
+        # 生产环境
+        prod:
+          druid:
+            name: prod
+            url: jdbc:mysql://127.0.0.1:3306/prod?useSSL=false&characterEncoding=UTF8&useUnicode=true
+            username: root
+            password: root
+            # 使用druid数据源
+            driverClassName: com.mysql.jdbc.Driver
+            type: com.alibaba.druid.pool.DruidDataSource
+            filters: stat
+            maxActive: 20
+            initialSize: 1
+            maxWait: 60000
+            minIdle: 1
+            timeBetweenEvictionRunsMillis: 60000
+            minEvictableIdleTimeMillis: 300000
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            poolPreparedStatements: true
+            maxOpenPreparedStatements: 20
+
+    #配置jpa,自动映射类到表
+    jpa:
+        database: MYSQL
+        show-sql: true
+        hibernate:
+          use-new-id-generator-mappings: true
+          ddlAuto: update
+          naming:
+            physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+
+    mvc:
+      dispatch-options-request: false
+    thymeleaf:
+        prefix: classpath:/templates # 一定要配置,不然打成jar时无法解析html
+
+logging:
+    config: classpath:log4j2.yml
