@@ -70,3 +70,7 @@ spring:
 
 logging:
     config: classpath:log4j2.yml
+
+# memcached config
+memcached:
+    servers: 127.0.0.1:11212,127.0.0.1:11211
